@@ -1,7 +1,7 @@
-import React from "react";
+import Heading from "@/components/heading";
 
 const ErrorPage = () => {
-  return <div>404 page not found</div>;
+  return <Heading text={"404 page not found"} />;
 };
 
 export default ErrorPage;

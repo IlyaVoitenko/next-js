@@ -1,4 +1,6 @@
+import Heading from "@/components/heading";
+
 const Home = () => {
-  return <span>hello world</span>;
+  return <Heading text={"hello world"} />;
 };
 export default Home;

@@ -1,7 +1,6 @@
-import React from "react";
+import Heading from "@/components/heading";
 
 const Contact = () => {
-  return <h1>JACK</h1>;
+  return <Heading text={"JACK"} />;
 };
-
 export default Contact;

@@ -1,7 +1,9 @@
+import Heading from "../components/heading";
+
 const Posts = () => {
   return (
     <>
-      <span>posts list :</span>
+      <Heading text={"posts list :"} />
       <span>item </span>
     </>
   );
