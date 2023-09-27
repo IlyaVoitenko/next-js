@@ -1,20 +1,29 @@
+import { useRouter } from "next/router";
 import Link from "next/link";
 import style from "./Navbar.module.scss";
 
 const Navbar = () => {
+  const { pathname } = useRouter();
+  const linkNavigation = [
+    { id: 1, path: "/", title: "Home" },
+    { id: 2, path: "/contacts", title: "Contacts" },
+    { id: 3, path: "/posts", title: "Posts" },
+  ];
   return (
     <div className={style.container}>
-      <span>Nacbar</span>
+      <span>Navbar</span>
       <nav className={style.navLinks}>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-        <Link href="/contacts">
-          <a>Contacts</a>
-        </Link>
-        <Link href="/posts">
-          <a>Posts</a>
-        </Link>
+        {linkNavigation.map(({ id, path, title }) => {
+          return (
+            <Link
+              key={id}
+              href={path}
+              className={pathname === path ? style.activeLink : null}
+            >
+              {title}
+            </Link>
+          );
+        })}
       </nav>
     </div>
   );
