@@ -1,14 +1,37 @@
 import React from "react";
 import Head from "next/head";
-import Heading from "@/components/heading";
 
-const contacts = () => {
+export const getStaticProps = async () => {
+  const rep = await fetch("https://jsonplaceholder.typicode.com/users");
+  const data = await rep.json();
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: {
+      contacts: data,
+    },
+  };
+};
+
+const contacts = ({ contacts }) => {
   return (
     <>
       <Head>
         <title>contacts</title>
       </Head>
-      <Heading text={"contacts page"} />
+      {contacts &&
+        contacts.map(({ name, id, email }) => {
+          return (
+            <p key={id}>
+              {id}
+              {name}
+              {email}
+            </p>
+          );
+        })}
     </>
   );
 };
