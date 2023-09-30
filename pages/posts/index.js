@@ -1,10 +1,10 @@
-import React from "react";
+import Heading from "../../components/heading";
 import Head from "next/head";
 import Link from "next/link";
 
 export const getStaticProps = async () => {
   try {
-    const rep = await fetch("https://jsonplaceholder.typicode.com/users");
+    const rep = await fetch("https://jsonplaceholder.typicode.com/posts");
     const data = await rep.json();
     if (!data) {
       return {
@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
     }
     return {
       props: {
-        contacts: data,
+        posts: data,
       },
     };
   } catch (error) {
@@ -21,22 +21,22 @@ export const getStaticProps = async () => {
   }
 };
 
-const contacts = ({ contacts }) => {
+const Posts = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>contacts</title>
+        <title>Posts</title>
       </Head>
-      {contacts &&
-        contacts.map(({ name, id }) => {
+      <Heading text={"posts list :"} />
+      {posts &&
+        posts.map(({ id, title }) => {
           return (
             <p key={id}>
-              <Link href={`/contacts/${id}`}>{name}</Link>
+              <Link href={`/posts/${id}`}>{title}</Link>
             </p>
           );
         })}
     </>
   );
 };
-
-export default contacts;
+export default Posts;
