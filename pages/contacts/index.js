@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
   const rep = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -23,12 +24,10 @@ const contacts = ({ contacts }) => {
         <title>contacts</title>
       </Head>
       {contacts &&
-        contacts.map(({ name, id, email }) => {
+        contacts.map(({ name, id }) => {
           return (
             <p key={id}>
-              {id}
-              {name}
-              {email}
+              <Link href={`/contacts/${id}`}>{name}</Link>
             </p>
           );
         })}
